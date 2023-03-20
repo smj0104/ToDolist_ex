@@ -73,8 +73,8 @@ class TodoService {
         this.todoList.forEach(todoObj => {
             todoContentList.innerHTML += `
                 <ul class="jobs-todo">
-                ${todoObj.todoContent}
-                </ul><button>삭제</button>
+                ${todoObj.todoContent}<button class="delete-button">삭제</button>
+                </ul>
 
 
             `;

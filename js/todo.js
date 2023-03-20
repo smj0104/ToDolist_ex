@@ -74,7 +74,7 @@ class TodoService {
             todoContentList.innerHTML += `
                 <ul class="jobs-todo">
                 ${todoObj.todoContent}
-                </ul>
+                </ul><button>삭제</button>
 
 
             `;

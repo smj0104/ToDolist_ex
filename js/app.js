@@ -1,5 +1,6 @@
 window.onload = () => {
+    TodoService.getInstance();
     TodoEvent.getInstance().addEventAddTodoClick();
     TodoEvent.getInstance().addEventAddTodoKeyUp();
-    TodoService.getInstance();
+    // TodoEvent.getInstance().addEventDeleteTodoClilck();
 }

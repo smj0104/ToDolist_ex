@@ -10,7 +10,6 @@
 }
 
 .todo-content{
-    border: 1px solid #121212;
     margin: 5px;
 }
 
@@ -27,4 +26,16 @@
 .jobs-todo{
     margin: 0;
     padding: 0;
+}
+
+.delete-button{
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+    background-color: #3F9FFF;
+    cursor: pointer;
+}
+
+.delete-button:active{
+    background-color: #FFB840;
 }

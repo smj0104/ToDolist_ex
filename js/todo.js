@@ -9,9 +9,10 @@ class TodoEvent {
 
     addEventAddTodoClick() {
         const addTodoButton = document.querySelector(".button-make-todo");
+        const todoInput = document.querySelector(".todo-input");
         addTodoButton.onclick = () => {
             TodoService.getInstance().addTodo();
-            const todoInput = document.querySelector(".todo-input");
+            
             todoInput.value = "";
         }
     }
@@ -24,6 +25,17 @@ class TodoEvent {
                 addTodoButton.click();
             }
         }
+    }
+
+    addEventDeleteTodoClilck() {
+        const todoContents = document.querySelectorAll(".delete-button");
+        todoContents.forEach((Button,index) => {
+            Button.onclick = () =>{
+                TodoService.getInstance().todoList.splice(index,1);
+                console.log(TodoService.getInstance().todoList[index]);
+                TodoService.getInstance().updateLocalStorage();
+            } 
+        });
     }
 
 }
@@ -65,7 +77,6 @@ class TodoService {
         this.loadTodoList();
     }
 
-
     loadTodoList() {
         const todoContentList = document.querySelector(".jobs-todo");
         todoContentList.innerHTML = ``;
@@ -73,13 +84,10 @@ class TodoService {
         this.todoList.forEach(todoObj => {
             todoContentList.innerHTML += `
                 <li class="jobs-todo-content">
-                    <div>${todoObj.todoContent}</div>
-                    <button class="delete-button">삭제</button>
+                ${todoObj.todoContent}<button class="delete-button">삭제</button>
                 </li>
             `;
         });
-
-        //TodoEvent.getInstance().addEventModifyTodoClick();
-        //TodoEvent.getInstance().addEventRemoveTodoClick();
+        TodoEvent.getInstance().addEventDeleteTodoClilck();
     }
 }

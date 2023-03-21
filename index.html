@@ -15,17 +15,22 @@
             <h1 class="title">ToDo List</h1>
         </header>
         <main class="main-container">
+            <div class="numbers-add">
+                <p><button class="clock"><i class="fa-solid fa-stopwatch-20"></i></button>오늘 마친 일: <span id="count-numbers">0</span></p>
+            </div>
             <div class="make-todo">
                 <input type="text" class="todo-input" placeholder="오늘 내가 해야 할 일들...">
-                <button class="button-make-todo">추가하기</button>
+                <button class="button-make-todo">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div> 
             <div class="todo-content">
                 <ul class="jobs-todo">
                 </ul>
             </div>
         </main>
-    </div>  
 
+    </div>  
     <script src="./js/todo.js"></script>
     <script src="./js/app.js"></script> 
 </body>

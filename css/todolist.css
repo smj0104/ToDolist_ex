@@ -5,15 +5,20 @@
 }
 
 .delete-button {
+    border: none;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    border-radius: 3px;
+
+    background-color: #3f9fff;;
+    color: #ffffff;
+
     float: right;
 }
 
-.todo-content {
-    border: 1px solid #121212;
-    margin: 5px;
-}
-
 .jobs-todo-content {
+    border: none;
     padding-bottom: 5px;
     display: flex;
     justify-content: space-between;

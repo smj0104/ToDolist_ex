@@ -1,3 +1,5 @@
+let count = 0;
+
 class TodoEvent {
     static #instance = null;
     static getInstance() {
@@ -6,6 +8,8 @@ class TodoEvent {
         }
         return this.#instance;
     }
+
+
 
     addEventAddTodoClick() {
         const addTodoButton = document.querySelector(".button-make-todo");
@@ -26,12 +30,21 @@ class TodoEvent {
         }
     }
 
-    addEventDeleteTodoClilck(removeIndex) {
-        const deleteTodoButton = document.querySelector(".delete-button");
-        deleteTodoButton.onclick = () => {
-            TodoService.getInstance().todoList.splice(removeIndex, 1);
-            TodoService.getInstance().updateLocalStorage();       
-        }
+    addEventDeleteTodoClilck() {
+        const deleteTodoButton = document.querySelectorAll(".delete-button");
+        const counter = document.getElementById("count-numbers");
+        
+        
+        deleteTodoButton.forEach((Button, index) => {
+            Button.onclick = () => {
+                TodoService.getInstance().todoList.splice(index,1);
+                count++;
+                counter.textContent = count;
+                //TodoService.getInstance().addNumber();
+                TodoService.getInstance().updateLocalStorage();
+                // console.log(index);
+            }
+        });
     }
 
 }
@@ -52,12 +65,14 @@ class TodoService {
             this.todoList = new Array();
         }else {
             this.todoList = JSON.parse(localStorage.getItem("todoList"));
+            this.count = JSON.parse(localStorage.getItem("count"));
         }
         this.loadTodoList();
     }
 
     updateLocalStorage() {
         localStorage.setItem("todoList", JSON.stringify(this.todoList));
+        localStorage.setItem("count", JSON.stringify(this.count));
         this.loadTodoList();
     }
 
@@ -73,13 +88,25 @@ class TodoService {
         this.loadTodoList();
     }
 
+    // addNumber() {
+    //     const numberInput = document.querySelector(".count-numbers");
+
+    //     const todoObj = {
+    //         todoContent: numberInput.value
+    //     }
+
+    //     this.count.push(todoObj);
+    //     this.updateLocalStorage();
+    //     this.loadTodoList();
+    // }
+
     deleteTodo() {
         const deleteInput = document.querySelector(".jobs-todo-content");
 
         const todoObj = {
             todoContent: deleteInput.value
         }
-        this.todoList.splice(todoObj,1);
+        this.todoList.splice(todoObj, index);
         this.updateLocalStorage();
     }
 
@@ -91,14 +118,14 @@ class TodoService {
         this.todoList.forEach(todoObj => {
             todoContentList.innerHTML += `
                 <li class="jobs-todo-content">
-                ${todoObj.todoContent}<button class="delete-button">삭제</button>
+                ${todoObj.todoContent}<button class="delete-button">
+                <i class="fa-solid fa-trash-can"></i>
+                </button>
                 </li>
 
 
             `;
         });
-
-        //TodoEvent.getInstance().addEventModifyTodoClick();
-        //TodoEvent.getInstance().addEventRemoveTodoClick();
+        TodoEvent.getInstance().addEventDeleteTodoClilck();
     }
 }

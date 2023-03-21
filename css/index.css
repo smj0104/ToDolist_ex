@@ -14,7 +14,7 @@
 
 body{
     margin: 0;
-    background: #3f9fff;
+    background: #1B67B3;
 }
 
 .container {
@@ -25,18 +25,33 @@ body{
     height: 1000px;
     margin: auto;
     padding: 20px;
+
 }
 .title {
     color: whitesmoke;
     font-size: 30px;
 }
+
+.numbers-add {
+    width: 450px;
+    height: 100%;
+    text-align: center;
+}
+
+.count-button {
+    border: none;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #59ACFF;;
+}
+
 .main-container{
     display: flex;
     flex-direction: column;
-    margin: 40px 0px;
+    margin: 0;
     padding: 25px 30px;
 
-    background: white;
+    background-color: white;
     border-radius: 10px;
     
     min-width:450px;
@@ -44,23 +59,53 @@ body{
     overflow: auto;
 }
 
+.menu-container {
+    margin: 20px;
+    width: 450px;
+}
+
+.menu-container button{
+    border: none;
+    background-color: #1B67B3;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.menu-container button:hover{
+    box-shadow: 0px 0px 2px 1px #DBDBDB;
+    transition: box-shadow 0.3 ease;
+}
+
 .make-todo {
+    display: flex;
+    justify-content: space-between;
     margin: 5px;
 }
 
 .todo-input {
     position: relative;
     padding: 12px;
-    width: 90%;
+    width: 80%;
     height: 45px;
 
-    color: #111111;
+    color: #FFF;
     font-weight: 500;
     font-size: 15px;
 
     border-radius: 5px;
-    border-bottom: 2px solid #131313;
-}   
+    border: none;
+    background-color: #59ACFF;
+}
+
+.todo-input:focus{
+    outline: none;
+
+}
+
+input::placeholder {
+    color: #FFF;
+    font-weight: 600;
+}
 
 .button-make-todo {
 
@@ -69,12 +114,16 @@ body{
     cursor: pointer;
     outline: none;
     height: 45px;
-    width: 60px;
+    width: 18%;
     border-radius: 5px;
-    position: absolute;
 
     background-color: #3f9fff;
     color: #ffffff;
+    font-size: 25px;
+}
+
+.button-make-todo:active{
+    background-color: #FFB840;
 }
 
 
@@ -83,4 +132,10 @@ ul {
     align-items: flex-start;
     flex-direction: column;
     list-style-type: none;
+}
+
+.clock {
+    border: none;
+    color: #59ACFF;
+    background-color: #ffffff;
 }

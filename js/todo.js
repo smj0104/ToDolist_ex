@@ -94,7 +94,13 @@ class TodoService {
         this.todoList.forEach(todoObj => {
             todoContentList.innerHTML += `
                 <li class="jobs-todo-content">
-                ${todoObj.todoContent}<button class="delete-button">삭제</button>
+                ${todoObj.todoContent}
+                <div class="jobs-todo-detail">
+                <button class="calendar-add-button">
+                    <i class="fa-regular fa-calendar-check"></i>
+                </button>
+                <button class="delete-button">삭제</button>
+                </div>
                 </li>
             `;
         });

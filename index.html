@@ -25,7 +25,7 @@
             <button class="menu-calendar-button">
                 <i class="fa-regular fa-calendar-check"></i>
             </button>
-            <div class="calendar-choice">?</div>
+            <label class="calendar-choice"></label>
         </div>
         <aside class="menu-aside menu-hidden">
             <header class="aside-header">
@@ -83,6 +83,17 @@
             </div>
         </div>
     </div>
+    <script>
+        function getToday(){
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = today.getMonth() + 1;
+            const day = today.getDate();
+            const text = document.querySelector(".calendar-choice");
+            text.innerHTML = `${year}년 ${month}월 ${day}일`;
+        }
+        getToday();
+    </script>
     <script src="./js/todo.js"></script>
     <script src="./js/modal.js"></script>
     <script src="./js/aside.js"></script>

@@ -10,7 +10,7 @@
 }
 
 .jobs-todo-content {
-    padding: 5px;
+    padding-top: 5px;
     display: flex;
     justify-content: space-between;
 
@@ -28,14 +28,40 @@
     padding: 0;
 }
 
+.jobs-todo-detail{
+    display: flex;
+    justify-content: space-between;
+
+
+    width: 90px;
+}
+
 .delete-button{
     border: none;
     border-radius: 5px;
+    color: #FFF;
+
+    width: 40px;
+
+    background-color: #3F9FFF;
+    cursor: pointer;
+}
+
+.calendar-add-button{
+    border: none;
+    border-radius: 5px;
+
+    width: 40px;
+
     color: #FFF;
     background-color: #3F9FFF;
     cursor: pointer;
 }
 
-.delete-button:active{
+.delete-button:hover{
+    background-color: #FFB840;
+}
+
+.calendar-add-button:hover{
     background-color: #FFB840;
 }

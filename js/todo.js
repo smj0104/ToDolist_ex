@@ -16,7 +16,7 @@ class TodoEvent {
             const todoInput = document.querySelector(".todo-input");
             todoInput.value = "";
         }
-    }
+    }   
 
     addEventAddTodoKeyUp() {
         const todoInput = document.querySelector(".todo-input");
@@ -40,9 +40,18 @@ class TodoEvent {
                 counter.textContent = count;
                 //TodoService.getInstance().addNumber();
                 TodoService.getInstance().updateLocalStorage();
+                counter.innerHTML = count;
                 console.log(index);
             }
         });
+    }
+
+    addEventDeleteDone() {
+        const deleteDoneButton = document.querySelector(".delete-list");
+        deleteDoneButton.onclick = () => {
+            TodoService.getInstance().deleteDoneTodo();
+            TodoService.getInstance().updateLocalStorage();
+        }
     }
 
 }
@@ -61,16 +70,17 @@ class TodoService {
     constructor() {
         if(localStorage.getItem("todoList") == null) {
             this.todoList = new Array();
+            count = 0;
         }else {
             this.todoList = JSON.parse(localStorage.getItem("todoList"));
-            this.count = JSON.parse(localStorage.getItem("count"));
+            count = JSON.parse(localStorage.getItem("count"));
         }
         this.loadTodoList();
     }
 
     updateLocalStorage() {
         localStorage.setItem("todoList", JSON.stringify(this.todoList));
-        localStorage.setItem("count", JSON.stringify(this.count));
+        localStorage.setItem("count", JSON.stringify(count));
         this.loadTodoList();
     }
 
@@ -92,8 +102,9 @@ class TodoService {
         const todoObj = {
             todoContent: numberInput.value
         }
-
-        this.count.push(todoObj);
+        count++;
+        localStorage.setItem("count", JSON.stringify(count));
+        
         this.updateLocalStorage();
         this.loadTodoList();
     }
@@ -105,6 +116,16 @@ class TodoService {
             todoContent: deleteInput.value
         }
         this.todoList.splice(todoObj, index);
+        this.updateLocalStorage();
+    }
+
+    deleteDoneTodo() {
+        const deleteDone = document.querySelector(".delete-list");
+        
+        const todoObj = {
+            todoContent: deleteDone.value
+        }
+        this.count.splice(todoObj, index);
         this.updateLocalStorage();
     }
 

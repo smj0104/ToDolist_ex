@@ -35,7 +35,6 @@ class TodoEvent {
         todoContents.forEach((Button,index) => {
             Button.onclick = () =>{
                 TodoService.getInstance().todoList.splice(index,1);
-                console.log(TodoService.getInstance().todoList[index]);
                 TodoService.getInstance().updateLocalStorage();
             } 
         });

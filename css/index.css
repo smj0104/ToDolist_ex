@@ -1,21 +1,29 @@
 * {
-    padding: 0;
-    margin: 0;
     box-sizing: border-box;
 }
+
+*::-webkit-scrollbar{
+    overflow: hidden;
+    width: 5px;
+}
+
+*::-webkit-scrollbar-thumb{
+    background-color: #DBDBDB;
+    border-radius: 5px;
+}
+
 body{
-    width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
+    margin: 0;
     background: #3f9fff;
 }
 
 .container {
     display: flex;
-    min-width: 700px;
-    align-items: flex-start;
     flex-direction: column;
+    align-items: center;
+    width: 700px;
+    height: 1000px;
+    margin: auto;
     padding: 20px;
 }
 .title {
@@ -24,22 +32,18 @@ body{
 }
 .main-container{
     display: flex;
-    /* align-items: center; */
     flex-direction: column;
     margin: 40px 0px;
     padding: 25px 30px;
-    position: absolute;
-    width: 50%;
-    top: 50%;
-    left: 50%;
 
     background: white;
     border-radius: 10px;
     
     min-width:450px;
-    min-height: 100px;
-    transform: translate(-50%,-50%);
+    max-height: 500px;
+    overflow: auto;
 }
+
 .make-todo {
     margin: 5px;
 }
@@ -55,12 +59,12 @@ body{
     font-size: 15px;
 
     border-radius: 5px;
-    border: 2px solid #131313;
+    border-bottom: 2px solid #131313;
 }   
 
 .button-make-todo {
-    background-color: #3f9fff;
-    color: #ffffff;
+
+    padding: 0;
     border: none;
     cursor: pointer;
     outline: none;
@@ -68,7 +72,9 @@ body{
     width: 60px;
     border-radius: 5px;
     position: absolute;
-    transform: translateX(-50%);
+
+    background-color: #3f9fff;
+    color: #ffffff;
 }
 
 

@@ -8,15 +8,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/todolist.css">
+    <link rel="stylesheet" href="./css/aside.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 class="title">ToDo List</h1>
+            <h1 class="title"><i class="fa-regular fa-calendar-check"></i> ToDo List</h1>
         </header>
         <div class="menu-container">
-            <button><i class="fa-solid fa-bars"></i></button>
+            <button class="menu-button"><i class="fa-solid fa-bars"></i></button>
+            <button>
+                <label for="calendar" class="calendar-label"><i class="fa-regular fa-calendar-check"></i></label>
+            </button>
+            <input type="date" id="calendar" class="calendar-input">
         </div>
+        <aside class="menu-aside menu-hidden">
+            <header class="aside-header">
+                <h1 class="header-title"><i class="fa-regular fa-calendar-check"></i>TODOLIST</h1>
+            </header>
+            <nav class="menu-nav">
+                <ul class="menu-list">
+                    
+                    <a href="javascript:void(0)" class="menu-items">
+                        <li><i class="fa-sharp fa-regular fa-calendar-days"></i>Calender</li>
+                    </a>
+                    <a href="javascript:void(0)" class="menu-items">
+                        <li><i class="fa-regular fa-calendar"></i>To Do List</li>
+                    </a>
+                </ul>
+            </nav>
+        </aside>
         <main class="main-container">
           
             <div class="make-todo">
@@ -28,9 +49,9 @@
                 </ul>
             </div>
         </main>
-    </div>  
-
+    </div>
     <script src="./js/todo.js"></script>
+    <script src="./js/aside.js"></script>
     <script src="./js/app.js"></script> 
 </body>
 </html>

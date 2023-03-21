@@ -11,9 +11,12 @@ class TodoEvent {
         const addTodoButton = document.querySelector(".button-make-todo");
         const todoInput = document.querySelector(".todo-input");
         addTodoButton.onclick = () => {
-            TodoService.getInstance().addTodo();
-            
-            todoInput.value = "";
+            if(todoInput.value == ""){
+                return;
+            }else{
+                TodoService.getInstance().addTodo();
+                todoInput.value = "";
+            }
         }
     }
 
@@ -37,6 +40,14 @@ class TodoEvent {
             } 
         });
     }
+
+    // addEventCalenderClilck(){
+    //     const calenderButton = document.querySelector(".calendar-label");
+    //     calenderButton.onclick = () =>{
+    //         const calenderInput = document.querySelector(".calendar-input");
+
+    //     }
+    // }
 
 }
 

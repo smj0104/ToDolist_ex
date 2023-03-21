@@ -1,7 +1,9 @@
 * {
     box-sizing: border-box;
 }
-
+html{
+    height: 100%;
+}
 *::-webkit-scrollbar{
     overflow: hidden;
     width: 5px;
@@ -14,22 +16,34 @@
 
 body{
     margin: 0;
+    height: 100%;
     background: #1B67B3;
 }
 
+a{
+    text-decoration: none;
+}
+
 .container {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 700px;
-    height: 1000px;
+    width: 100%;
+    height: 100%;
     margin: auto;
     padding: 20px;
+    overflow: hidden;
 
 }
 .title {
+    padding: 2px;
     color: whitesmoke;
     font-size: 30px;
+}
+
+.title i{
+    padding: 5px;
 }
 .main-container{
     display: flex;
@@ -39,19 +53,20 @@ body{
 
     background-color: white;
     border-radius: 10px;
-    
-    min-width:450px;
-    max-height: 500px;
+
+    min-width: 50%;
+    max-height: 50%;
     overflow: auto;
 }
 
 .menu-container {
     margin: 20px;
-    width: 450px;
+    min-width: 50%;
 }
 
 .menu-container button{
     border: none;
+    
     background-color: #1B67B3;
     color: #FFF;
     cursor: pointer;
@@ -60,6 +75,7 @@ body{
 .menu-container button:hover{
     box-shadow: 0px 0px 2px 1px #DBDBDB;
     transition: box-shadow 0.3 ease;
+    background-color: #FFB840;
 }
 
 .make-todo {
@@ -85,7 +101,6 @@ body{
 
 .todo-input:focus{
     outline: none;
-
 }
 
 input::placeholder {
@@ -116,4 +131,8 @@ ul {
     align-items: flex-start;
     flex-direction: column;
     list-style-type: none;
+}
+
+.calendar-input{
+    display: none;
 }

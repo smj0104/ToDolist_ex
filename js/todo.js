@@ -26,6 +26,14 @@ class TodoEvent {
         }
     }
 
+    addEventDeleteTodoClilck(removeIndex) {
+        const deleteTodoButton = document.querySelector(".delete-button");
+        deleteTodoButton.onclick = () => {
+            TodoService.getInstance().todoList.splice(removeIndex, 1);
+            TodoService.getInstance().updateLocalStorage();       
+        }
+    }
+
 }
 
 class TodoService {
@@ -65,6 +73,16 @@ class TodoService {
         this.loadTodoList();
     }
 
+    deleteTodo() {
+        const deleteInput = document.querySelector(".jobs-todo-content");
+
+        const todoObj = {
+            todoContent: deleteInput.value
+        }
+        this.todoList.splice(todoObj,1);
+        this.updateLocalStorage();
+    }
+
 
     loadTodoList() {
         const todoContentList = document.querySelector(".jobs-todo");
@@ -72,9 +90,9 @@ class TodoService {
 
         this.todoList.forEach(todoObj => {
             todoContentList.innerHTML += `
-                <ul class="jobs-todo">
+                <li class="jobs-todo-content">
                 ${todoObj.todoContent}<button class="delete-button">삭제</button>
-                </ul>
+                </li>
 
 
             `;

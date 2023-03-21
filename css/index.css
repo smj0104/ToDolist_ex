@@ -14,7 +14,7 @@ body{
 .container {
     display: flex;
     min-width: 700px;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     padding: 20px;
 }
@@ -23,6 +23,9 @@ body{
     font-size: 30px;
 }
 .main-container{
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
     margin: 40px 0px;
     padding: 25px 30px;
     position: absolute;
@@ -38,7 +41,7 @@ body{
     transform: translate(-50%,-50%);
 }
 .make-todo {
-    transform: translateY(+50%);
+    margin: 5px;
 }
 
 .todo-input {
@@ -61,10 +64,17 @@ body{
     border: none;
     cursor: pointer;
     outline: none;
-    height: 100%;
+    height: 45px;
     width: 60px;
     border-radius: 5px;
     position: absolute;
-    right: 20px;
+    transform: translateX(-50%);
+}
 
+
+ul {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    list-style-type: none;
 }

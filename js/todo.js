@@ -9,8 +9,6 @@ class TodoEvent {
         return this.#instance;
     }
 
-
-
     addEventAddTodoClick() {
         const addTodoButton = document.querySelector(".button-make-todo");
         addTodoButton.onclick = () => {
@@ -42,7 +40,7 @@ class TodoEvent {
                 counter.textContent = count;
                 //TodoService.getInstance().addNumber();
                 TodoService.getInstance().updateLocalStorage();
-                // console.log(index);
+                console.log(index);
             }
         });
     }
@@ -88,17 +86,17 @@ class TodoService {
         this.loadTodoList();
     }
 
-    // addNumber() {
-    //     const numberInput = document.querySelector(".count-numbers");
+    addNumber() {
+        const numberInput = document.querySelector(".count-numbers");
 
-    //     const todoObj = {
-    //         todoContent: numberInput.value
-    //     }
+        const todoObj = {
+            todoContent: numberInput.value
+        }
 
-    //     this.count.push(todoObj);
-    //     this.updateLocalStorage();
-    //     this.loadTodoList();
-    // }
+        this.count.push(todoObj);
+        this.updateLocalStorage();
+        this.loadTodoList();
+    }
 
     deleteTodo() {
         const deleteInput = document.querySelector(".jobs-todo-content");
@@ -109,7 +107,6 @@ class TodoService {
         this.todoList.splice(todoObj, index);
         this.updateLocalStorage();
     }
-
 
     loadTodoList() {
         const todoContentList = document.querySelector(".jobs-todo");

@@ -47,7 +47,7 @@ class TodoEvent {
     }
 
     addEventDeleteDone() {
-        const deleteDoneButton = document.querySelector(".delete-list");
+        const deleteDoneButton = document.querySelector(".button-delete-list");
         deleteDoneButton.onclick = () => {
             count = 0;
             TodoService.getInstance().updateLocalStorage();
@@ -57,6 +57,26 @@ class TodoEvent {
         
     }
 
+    addEventOpenClick() {
+        const modalOpenButtons = document.querySelectorAll(".list-modify-button");
+        modalOpenButtons.forEach((modalOpenButton, index) => {
+            modalOpenButton.onclick = () => {
+                ModalService.getInstance().showModal(index);
+            }
+        });
+    }
+
+    
+    addEventModifyTodoClick() {
+        const modifyButtons = document.querySelectorAll(".list-modify-button")
+        modifyButtons.forEach((modifyButton, index) => {
+            modifyButton.onclick = () => {
+                ModalService.getInstance().modifyModal(index);
+            }
+        });
+    }
+    
+    
 }
 
 class TodoService {
@@ -84,6 +104,7 @@ class TodoService {
         }
       
         this.loadTodoList();
+        this.loadCounter();
       }
       
 
@@ -122,20 +143,26 @@ class TodoService {
         this.todoList.forEach(todoObj => {
             todoContentList.innerHTML += `
                 <li class="jobs-todo-content">
-                ${todoObj.todoContent}<button class="delete-button">
+                ${todoObj.todoContent}
+                <div class="buttons">
+                <button class="delete-button">
                 <i class="fa-solid fa-trash-can"></i>
                 </button>
+                <button type="button" class="list-modify-button">
+                <i class="fa-solid fa-pen-nib"></i>
+                </button>
+                </div>
                 </li>
             `;
         });
+        TodoEvent.getInstance().addEventModifyTodoClick();
         TodoEvent.getInstance().addEventDeleteTodoClilck();
+        TodoEvent.getInstance().addEventOpenClick();
+
     }
-
-    loadDeleteNumber() {
-        const deleteList = document.querySelector("#count-numbers");
-        deleteList.innerHTML = '';
-
-
+    loadCounter() {
+        const counter = document.getElementById("count-numbers");
+        counter.innerHTML = count;
     }
 
     

@@ -1,3 +1,6 @@
+
+
+
 class TodoEvent {
     static #instance = null;
     static getInstance() {
@@ -10,6 +13,7 @@ class TodoEvent {
     addEventAddTodoClick() {
         const addTodoButton = document.querySelector(".button-make-todo");
         const todoInput = document.querySelector(".todo-input");
+        // const label = document.querySelector(".calendar-choice");
         addTodoButton.onclick = () => {
             if(todoInput.value == ""){
                 return;
@@ -40,13 +44,19 @@ class TodoEvent {
         });
     }
 
-    // addEventCalenderClilck(){
-    //     const calenderButton = document.querySelector(".calendar-label");
-    //     calenderButton.onclick = () =>{
-    //         const calenderInput = document.querySelector(".calendar-input");
+    addEventCalendarClilck(){
+        const calendarButton = document.querySelectorAll(".calendar-add-button");
+        const label = document.querySelector(".calendar-choice");
+        calendarButton.forEach((Button,index)=>{
+            Button.onclick = () =>{
+                const todoObj = TodoService.getInstance().todoList;
+                const keyDate = label.textContent;
+                const valueDate = todoObj[index].todoContent;
+                TodoService.getInstance().createCalendarList(keyDate,valueDate);
+            }
+        }) 
 
-    //     }
-    // }
+    }
 
 }
 
@@ -58,20 +68,21 @@ class TodoService {
         }
         return this.#instance;
     }
-
     todoList = null;
-
+    calenderList = null;
     constructor() {
-        if(localStorage.getItem("todoList") == null) {
+        const label = document.querySelector(".calendar-choice")
+        if(localStorage.getItem(label.textContent) == null){
             this.todoList = new Array();
-        }else {
-            this.todoList = JSON.parse(localStorage.getItem("todoList"));
+        }else{
+            this.todoList = JSON.parse(localStorage.getItem(label.textContent));
         }
         this.loadTodoList();
     }
 
     updateLocalStorage() {
-        localStorage.setItem("todoList", JSON.stringify(this.todoList));
+        const label = document.querySelector(".calendar-choice")
+        localStorage.setItem(label.textContent, JSON.stringify(this.todoList));
         this.loadTodoList();
     }
 
@@ -87,10 +98,31 @@ class TodoService {
         this.loadTodoList();
     }
 
+    updateCalendarLocalStorage(keyDate){
+        localStorage.setItem(keyDate,JSON.stringify(this.calenderList));
+    }
+
+    addCalendar(keyDate,valueDate){
+        const calendarObj = {
+            Content: valueDate
+        }
+        console.log(calendarObj);
+        this.calenderList.push(calendarObj);
+        this.updateCalendarLocalStorage(keyDate);
+    }
+
+    createCalendarList(keyDate,valueDate){
+        if(localStorage.getItem(keyDate) == null){
+            this.calenderList = new Array();
+        }else{
+            this.calenderList = JSON.parse(localStorage.getItem(keyDate));
+        }
+        this.addCalendar(keyDate,valueDate);
+    }
+
     loadTodoList() {
         const todoContentList = document.querySelector(".jobs-todo");
         todoContentList.innerHTML = ``;
-
         this.todoList.forEach(todoObj => {
             todoContentList.innerHTML += `
                 <li class="jobs-todo-content">
@@ -105,5 +137,6 @@ class TodoService {
             `;
         });
         TodoEvent.getInstance().addEventDeleteTodoClilck();
+        TodoEvent.getInstance().addEventCalendarClilck();
     }
 }

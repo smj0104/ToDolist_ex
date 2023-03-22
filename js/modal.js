@@ -58,6 +58,7 @@ class ModalCanlendar{
                         const month = this.displayDate.getMonth() + 1;
                         const day = parseInt(dayCell.textContent);
                         this.getToday(year,month,day);
+                        ModalService.getInstance().closeModal();
                     }
                 }
                 weekRow.appendChild(dayCell);

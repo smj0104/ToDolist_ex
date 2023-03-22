@@ -103,9 +103,13 @@
 
 .calendar-day {
     flex: 1;
-    padding: 10px;
+    padding: 1px;
+
     border: 1px solid #DBDBDB;
-    min-height: 100px;
+    width: 100px;
+    height: 100px;
+
+    font-size: 12px;
     cursor: pointer;
 }
 

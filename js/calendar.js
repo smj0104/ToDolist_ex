@@ -52,13 +52,17 @@ class Calendar {
 
                 if ((i === currentDay.getDay()) && (currentDay <= lastDayOfMonth)) {
                     dayCell.textContent = currentDay.getDate();
-                    dayCell.onclick = () => {
-                        const year = this.displayDate.getFullYear();
-                        const month = this.displayDate.getMonth() + 1;
-                        const day = parseInt(dayCell.textContent);
-                        const dateString = `${year}.${month}.${day}`;
+                    const year = this.displayDate.getFullYear();
+                    const month = this.displayDate.getMonth() + 1;
+                    const day = parseInt(dayCell.textContent);
+                    const dateString = `${year}년 ${month}월 ${day}일`;
+                    const todoList = JSON.parse(localStorage.getItem(dateString));
+                    console.log(todoList);
+                    if(todoList != null){
+                        todoList.forEach(todo =>{
+                            dayCell.innerHTML += `<br>${todo.Content}`;
+                        });
                     }
-
                     currentDay.setDate(currentDay.getDate() + 1);
                 }
                 weekRow.appendChild(dayCell);

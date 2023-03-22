@@ -33,7 +33,7 @@
     justify-content: space-between;
 
 
-    width: 90px;
+    width: 120px;
 }
 
 .delete-button{
@@ -41,7 +41,7 @@
     border-radius: 5px;
     color: #FFF;
 
-    width: 40px;
+    width: 45px;
 
     background-color: #3F9FFF;
     cursor: pointer;
@@ -51,7 +51,7 @@
     border: none;
     border-radius: 5px;
 
-    width: 40px;
+    width: 45px;
 
     color: #FFF;
     background-color: #3F9FFF;

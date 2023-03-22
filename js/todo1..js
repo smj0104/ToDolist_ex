@@ -1,6 +1,4 @@
 
-
-
 class TodoEvent {
     static #instance = null;
     static getInstance() {
@@ -55,9 +53,7 @@ class TodoEvent {
                 TodoService.getInstance().createCalendarList(keyDate,valueDate);
             }
         }) 
-
     }
-
 }
 
 class TodoService {
@@ -78,7 +74,7 @@ class TodoService {
             this.todoList = JSON.parse(localStorage.getItem(label.textContent));
         }
         this.loadTodoList();
-    }
+    } 
 
     updateLocalStorage() {
         const label = document.querySelector(".calendar-choice")

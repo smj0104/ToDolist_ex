@@ -61,10 +61,12 @@ class Calendar {
                     const todoList = JSON.parse(localStorage.getItem(dateString));
                     console.log(todoList);
                     if(todoList != null){
-                        todoList.forEach(todo =>{
-                            div.innerHTML += `
-                                <br>${todo.todoContent}
-                            `;
+                        todoList.forEach((todo,index) =>{
+                            if(todo.calendar != null){
+                                div.innerHTML += `
+                                    <br>${index + 1}. ${todo.calendar}
+                                `;
+                            }
                         });
                     }
                     currentDay.setDate(currentDay.getDate() + 1);
@@ -87,6 +89,7 @@ class Calendar {
 }
 
 window.onload = () => {
+    console.log(Calendar.getInstance());
     Calendar.getInstance();
     AsideEvent.getInstace().addEventMenuButton();
 }

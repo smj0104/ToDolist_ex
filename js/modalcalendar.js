@@ -13,6 +13,8 @@ class ModalCanlendar{
         this.addEventListeners();
     }
 
+    today = null;
+
     addEventListeners() {
         const prevButton = document.querySelector('.modal-calendar-prev');
         const nextButton = document.querySelector('.modal-calendar-next');
@@ -58,14 +60,16 @@ class ModalCanlendar{
                         const month = this.displayDate.getMonth() + 1;
                         const day = parseInt(dayCell.textContent);
                         this.getToday(year,month,day);
-                        ModalService.getInstance().closeModal();
+                        ModalCalendarService.getInstance().closeModal();
+                        TodoService.getInstance().crateTodoList();
+                        TodoService.getInstance().loadTodoList();
                     }
                 }
                 weekRow.appendChild(dayCell);
             }
             calendarTable.appendChild(weekRow);
         }
-        ModalEvent.getInstance().addEventCalendarButton();
+        ModalCalendarEvent.getInstance().addEventCalendarButton();
     }
 
     getMonthName(month) {
@@ -79,16 +83,17 @@ class ModalCanlendar{
 
     getToday(year,month,day) {
         const text = document.querySelector(".calendar-choice");
-        console.log(text);
         text.innerHTML = `${year}년 ${month}월 ${day}일`;
+        return text.textContent;
     }
+
 }
 
-class ModalEvent{
+class ModalCalendarEvent{
     static #instace = null;
     static getInstance() {
         if(this.#instace == null){
-            this.#instace = new ModalEvent();
+            this.#instace = new ModalCalendarEvent();
         }
         return this.#instace;
     }
@@ -96,24 +101,23 @@ class ModalEvent{
     addEventCancelClick(){
         const modalCancelButton = document.querySelector(".modal-calendar-close");
         modalCancelButton.onclick = () =>{
-            ModalService.getInstance().closeModal();
+            ModalCalendarService.getInstance().closeModal();
         }
     }
 
     addEventCalendarButton(){
         const modalCalendarButton = document.querySelector(".menu-calendar-button");
-        console.log(modalCalendarButton);
         modalCalendarButton.onclick = () =>{
-            ModalService.getInstance().showModal();
+            ModalCalendarService.getInstance().showModal();
         }
     }
 }
 
-class ModalService{
+class ModalCalendarService{
     static #instace = null;
     static getInstance() {
         if(this.#instace == null){
-            this.#instace = new ModalService();
+            this.#instace = new ModalCalendarService();
         }
         return this.#instace;
     }

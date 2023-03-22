@@ -45,29 +45,33 @@ class Calendar {
 
         while (currentDay <= lastDayOfMonth) {
             const weekRow = document.createElement('tr');
-
+            weekRow.classList.add("calendar-week");
             for (let i = 0; i < 7; i++) {
+                const div = document.createElement('div');
+                div.classList.add("calendar-todolist");
                 const dayCell = document.createElement('td');
                 dayCell.classList.add("calendar-day");
 
                 if ((i === currentDay.getDay()) && (currentDay <= lastDayOfMonth)) {
-                    dayCell.textContent = currentDay.getDate();
+                    div.textContent = currentDay.getDate();
                     const year = this.displayDate.getFullYear();
                     const month = this.displayDate.getMonth() + 1;
-                    const day = parseInt(dayCell.textContent);
+                    const day = parseInt(div.textContent);
                     const dateString = `${year}년 ${month}월 ${day}일`;
                     const todoList = JSON.parse(localStorage.getItem(dateString));
                     console.log(todoList);
                     if(todoList != null){
                         todoList.forEach(todo =>{
-                            dayCell.innerHTML += `<br>${todo.Content}`;
+                            div.innerHTML += `
+                                <br>${todo.todoContent}
+                            `;
                         });
                     }
                     currentDay.setDate(currentDay.getDate() + 1);
                 }
                 weekRow.appendChild(dayCell);
+                dayCell.appendChild(div);
             }
-
             calendarTable.appendChild(weekRow);
         }
     }

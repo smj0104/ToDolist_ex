@@ -1,7 +1,9 @@
 * {
     box-sizing: border-box;
 }
-
+html{
+    height: 100%;
+}
 *::-webkit-scrollbar{
     overflow: hidden;
     width: 5px;
@@ -14,58 +16,58 @@
 
 body{
     margin: 0;
+    height: 100%;
     background: #1B67B3;
 }
 
+a{
+    text-decoration: none;
+}
+
 .container {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 700px;
-    height: 1000px;
+    width: 100%;
+    height: 100%;
     margin: auto;
     padding: 20px;
+    overflow: hidden;
 
 }
 .title {
+    padding: 2px;
     color: whitesmoke;
     font-size: 30px;
 }
 
-.numbers-add {
-    width: 450px;
-    height: 100%;
-    text-align: center;
+.title i{
+    padding: 5px;
 }
-
-.count-button {
-    border: none;
-    cursor: pointer;
-    background-color: #ffffff;
-    color: #59ACFF;;
-}
-
 .main-container{
     display: flex;
     flex-direction: column;
     margin: 0;
-    padding: 25px 30px;
+    padding: 5px;
 
     background-color: white;
     border-radius: 10px;
-    
-    min-width:450px;
-    max-height: 500px;
+
+    min-width: 50%;
+    max-height: 50%;
     overflow: auto;
 }
 
 .menu-container {
-    margin: 20px;
-    width: 450px;
+    margin: 10px;
+    min-width: 50%;
+    color: #FFF;
 }
 
 .menu-container button{
     border: none;
+    
     background-color: #1B67B3;
     color: #FFF;
     cursor: pointer;
@@ -74,6 +76,7 @@ body{
 .menu-container button:hover{
     box-shadow: 0px 0px 2px 1px #DBDBDB;
     transition: box-shadow 0.3 ease;
+    background-color: #FFB840;
 }
 
 .make-todo {
@@ -99,10 +102,9 @@ body{
 
 .todo-input:focus{
     outline: none;
-
 }
 
-input::placeholder {
+.todo-input::placeholder {
     color: #FFF;
     font-weight: 600;
 }
@@ -114,24 +116,45 @@ input::placeholder {
     cursor: pointer;
     outline: none;
     height: 45px;
-    width: 18%;
+    width: 100px;
     border-radius: 5px;
 
     background-color: #3f9fff;
     color: #ffffff;
-    font-size: 25px;
 }
 
-.button-make-todo:active{
+.button-make-todo:hover{
     background-color: #FFB840;
 }
-
 
 ul {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     list-style-type: none;
+}
+
+.calendar-input{
+    display: none;
+}
+
+.numbers-add {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.count-button {
+    border: none;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #59ACFF;;
+}
+
+.numbers-content{
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .clock {

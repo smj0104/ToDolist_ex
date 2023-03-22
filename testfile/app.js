@@ -1,12 +1,12 @@
 window.onload = () => {
     TodoService.getInstance();
-    ModalCanlendar.getInstance();
     TodoEvent.getInstance().addEventAddTodoClick();
     TodoEvent.getInstance().addEventAddTodoKeyUp();
     TodoEvent.getInstance().addEventDeleteTodoClilck();
-    ModalCalendarEvent.getInstance().addEventCalendarButton();
-    ModalCalendarEvent.getInstance().addEventCancelClick();
-    AsideEvent.getInstace().addEventMenuButton();
+    TodoEvent.getInstance().addEventDeleteDone();
+    TodoEvent.getInstance().addEventOpenClick();
+    TodoEvent.getInstance().addEventModifyTodoClick();
     ModalEvent.getInstance().addEventCancelClick();
     ModalEvent.getInstance().addEventModifyOkClick();
+
 }

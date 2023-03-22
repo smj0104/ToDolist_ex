@@ -4,37 +4,13 @@
     border-radius: 3px;
 }
 
-.delete-button {
-    border: none;
-    cursor: pointer;
-    height: 25px;
-    width: 25px;
-    border-radius: 3px;
-    padding-left: 5px;
 
-    background-color: #3f9fff;;
-    color: #ffffff;
-
-    float: right;
-}
-
-.list-modify-button {
-    border: none;
-    cursor: pointer;
-    height: 25px;
-    width: 25px;
-    border-radius: 3px;
-    padding-left: 5px;
-
-    background-color: #3f9fff;;
-    color: #ffffff;
-
-    float: right;
+.todo-content{
+    margin: 5px;
 }
 
 .jobs-todo-content {
-    border: none;
-    padding-bottom: 5px;
+    padding-top: 5px;
     display: flex;
     justify-content: space-between;
 
@@ -43,27 +19,62 @@
 
 }
 
-.jobs-todo {
+.jobs-todo{
     margin: 0;
     padding: 0;
 }
 
-.button-delete-list {
-    border: none;
-    cursor: pointer;
-    height: 25px;
-    width: 25px;
-    border-radius: 3px;
-    float: right;
+.jobs-todo-detail{
+    display: flex;
+    justify-content: space-between;
 
-    background-color: #3f9fff;;
-    color: #ffffff;
+
+    width: 100px;
 }
 
-.button-delete-list:active {
+.delete-button{
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+
+    width: 25px;
+
+    background-color: #3F9FFF;
+    cursor: pointer;
+}
+
+.calendar-add-button{
+    border: none;
+    border-radius: 5px;
+
+    width: 25px;
+
+    color: #FFF;
+    background-color: #3F9FFF;
+    cursor: pointer;
+}
+
+.modify-button {
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+
+    width: 25px;
+
+    background-color: #3F9FFF;
+    cursor: pointer;
+}
+
+
+.delete-button:hover{
     background-color: #FFB840;
 }
 
-.buttons {
-    cursor: pointer;
+.calendar-add-button:hover{
+    background-color: #FFB840;
 }
+
+.modify-button :hover{
+    background-color: #FFB840;
+}
+

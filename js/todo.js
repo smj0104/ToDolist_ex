@@ -1,8 +1,6 @@
-let count = 0;
 
 class TodoEvent {
     static #instance = null;
-    static count = null;
     static getInstance() {
         if(this.#instance == null) {
             this.#instance = new TodoEvent();
@@ -12,12 +10,16 @@ class TodoEvent {
 
     addEventAddTodoClick() {
         const addTodoButton = document.querySelector(".button-make-todo");
+        const todoInput = document.querySelector(".todo-input");
         addTodoButton.onclick = () => {
-            TodoService.getInstance().addTodo();
-            const todoInput = document.querySelector(".todo-input");
-            todoInput.value = "";
+            if(todoInput.value == ""){
+                return;
+            }else{
+                TodoService.getInstance().addTodo();
+                todoInput.value = "";
+            }
         }
-    }   
+    }
 
     addEventAddTodoKeyUp() {
         const todoInput = document.querySelector(".todo-input");
@@ -31,52 +33,36 @@ class TodoEvent {
 
     addEventDeleteTodoClilck() {
         const deleteTodoButton = document.querySelectorAll(".delete-button");
-        const counter = document.getElementById("count-numbers");
-        
-        
-        deleteTodoButton.forEach((Button, index) => {
-            Button.onclick = () => {
+        deleteTodoButton.forEach((Button,index) => {
+            Button.onclick = () =>{
                 TodoService.getInstance().todoList.splice(index,1);
-                count++;
-                counter.textContent = count;
                 TodoService.getInstance().updateLocalStorage();
-                counter.innerHTML = count;
-                console.log(index);
-            }
+            } 
         });
     }
 
-    addEventDeleteDone() {
-        const deleteDoneButton = document.querySelector(".button-delete-list");
-        deleteDoneButton.onclick = () => {
-            count = 0;
-            TodoService.getInstance().updateLocalStorage();
-            const counter = document.getElementById("count-numbers");
-            counter.innerHTML = count;
-          }
-        
-    }
-
-    addEventOpenClick() {
-        const modalOpenButtons = document.querySelectorAll(".list-modify-button");
-        modalOpenButtons.forEach((modalOpenButton, index) => {
-            modalOpenButton.onclick = () => {
-                ModalService.getInstance().showModal(index);
+    addEventCalendarClilck(){
+        const calendarButton = document.querySelectorAll(".calendar-add-button");
+        calendarButton.forEach((Button,index) =>{
+            Button.onclick = () =>{
+                Calendar.getInstance().renderCalendar();
+                TodoService.getInstance().todoList.splice(index,1);
+                TodoService.getInstance().updateLocalStorage();
             }
         });
     }
-
     
     addEventModifyTodoClick() {
-        const modifyButtons = document.querySelectorAll(".list-modify-button")
+        const modifyButtons = document.querySelectorAll(".modify-button")
         modifyButtons.forEach((modifyButton, index) => {
             modifyButton.onclick = () => {
+                ModalService.getInstance().showModal();
                 ModalService.getInstance().modifyModal(index);
             }
         });
     }
-    
-    
+
+
 }
 
 class TodoService {
@@ -87,30 +73,23 @@ class TodoService {
         }
         return this.#instance;
     }
-
     todoList = null;
 
+
     constructor() {
-        if (localStorage.getItem("todoList") == null) {
-          this.todoList = new Array();
-          count = 0;
-        } else {
-          this.todoList = JSON.parse(localStorage.getItem("todoList"));
-          count = JSON.parse(localStorage.getItem("count"));
+        const label = document.querySelector(".calendar-choice");
+        console.log(label);
+        if(localStorage.getItem(label.textContent) == null){
+            this.todoList = new Array();
+        }else{
+            this.todoList = JSON.parse(localStorage.getItem(label.textContent));
         }
-        
-        if (count === null) {
-          count = 0;
-        }
-      
         this.loadTodoList();
-        this.loadCounter();
-      }
-      
+    } 
 
     updateLocalStorage() {
-        localStorage.setItem("todoList", JSON.stringify(this.todoList));
-        localStorage.setItem("count", JSON.stringify(count));
+        const label = document.querySelector(".calendar-choice")
+        localStorage.setItem(label.textContent, JSON.stringify(this.todoList));
         this.loadTodoList();
     }
 
@@ -126,44 +105,40 @@ class TodoService {
         this.loadTodoList();
     }
 
-    deleteTodo() {
-        const deleteInput = document.querySelector(".jobs-todo-content");
-
-        const todoObj = {
-            todoContent: deleteInput.value
+    crateTodoList(){
+        const label = document.querySelector(".calendar-choice");
+        if(localStorage.getItem(label.textContent) == null){
+            this.todoList = new Array();
+        }else{
+            this.todoList = JSON.parse(localStorage.getItem(label.textContent));
         }
-        this.todoList.splice(todoObj, index);
-        this.updateLocalStorage();
     }
 
     loadTodoList() {
         const todoContentList = document.querySelector(".jobs-todo");
         todoContentList.innerHTML = ``;
-
         this.todoList.forEach(todoObj => {
             todoContentList.innerHTML += `
                 <li class="jobs-todo-content">
                 ${todoObj.todoContent}
-                <div class="buttons">
-                <button class="delete-button">
-                <i class="fa-solid fa-trash-can"></i>
-                </button>
-                <button type="button" class="list-modify-button">
-                <i class="fa-solid fa-pen-nib"></i>
-                </button>
+                <div class="jobs-todo-detail">
+                    <button class="calendar-add-button">
+                        <i class="fa-regular fa-calendar-check"></i>
+                    </button>
+                    <button class="modify-button">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </button>
+                    <button class="delete-button">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
                 </div>
                 </li>
             `;
         });
-        TodoEvent.getInstance().addEventModifyTodoClick();
         TodoEvent.getInstance().addEventDeleteTodoClilck();
-        TodoEvent.getInstance().addEventOpenClick();
-
-    }
-    loadCounter() {
-        const counter = document.getElementById("count-numbers");
-        counter.innerHTML = count;
+        TodoEvent.getInstance().addEventCalendarClilck();
+        TodoEvent.getInstance().addEventModifyTodoClick();
+        
     }
 
-    
 }

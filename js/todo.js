@@ -155,7 +155,6 @@ class TodoService {
                 </li>
             `;
         });
-        TodoEvent.getInstance().addEventModifyTodoClick();
         TodoEvent.getInstance().addEventDeleteTodoClilck();
         TodoEvent.getInstance().addEventOpenClick();
 

@@ -2,6 +2,7 @@ let count = 0;
 
 class TodoEvent {
     static #instance = null;
+    static count = null;
     static getInstance() {
         if(this.#instance == null) {
             this.#instance = new TodoEvent();
@@ -38,7 +39,6 @@ class TodoEvent {
                 TodoService.getInstance().todoList.splice(index,1);
                 count++;
                 counter.textContent = count;
-                //TodoService.getInstance().addNumber();
                 TodoService.getInstance().updateLocalStorage();
                 counter.innerHTML = count;
                 console.log(index);
@@ -49,9 +49,12 @@ class TodoEvent {
     addEventDeleteDone() {
         const deleteDoneButton = document.querySelector(".delete-list");
         deleteDoneButton.onclick = () => {
-            TodoService.getInstance().deleteDoneTodo();
+            count = 0;
             TodoService.getInstance().updateLocalStorage();
-        }
+            const counter = document.getElementById("count-numbers");
+            counter.innerHTML = count;
+          }
+        
     }
 
 }
@@ -68,15 +71,21 @@ class TodoService {
     todoList = null;
 
     constructor() {
-        if(localStorage.getItem("todoList") == null) {
-            this.todoList = new Array();
-            count = 0;
-        }else {
-            this.todoList = JSON.parse(localStorage.getItem("todoList"));
-            count = JSON.parse(localStorage.getItem("count"));
+        if (localStorage.getItem("todoList") == null) {
+          this.todoList = new Array();
+          count = 0;
+        } else {
+          this.todoList = JSON.parse(localStorage.getItem("todoList"));
+          count = JSON.parse(localStorage.getItem("count"));
         }
+        
+        if (count === null) {
+          count = 0;
+        }
+      
         this.loadTodoList();
-    }
+      }
+      
 
     updateLocalStorage() {
         localStorage.setItem("todoList", JSON.stringify(this.todoList));
@@ -96,19 +105,6 @@ class TodoService {
         this.loadTodoList();
     }
 
-    addNumber() {
-        const numberInput = document.querySelector(".count-numbers");
-
-        const todoObj = {
-            todoContent: numberInput.value
-        }
-        count++;
-        localStorage.setItem("count", JSON.stringify(count));
-        
-        this.updateLocalStorage();
-        this.loadTodoList();
-    }
-
     deleteTodo() {
         const deleteInput = document.querySelector(".jobs-todo-content");
 
@@ -116,16 +112,6 @@ class TodoService {
             todoContent: deleteInput.value
         }
         this.todoList.splice(todoObj, index);
-        this.updateLocalStorage();
-    }
-
-    deleteDoneTodo() {
-        const deleteDone = document.querySelector(".delete-list");
-        
-        const todoObj = {
-            todoContent: deleteDone.value
-        }
-        this.count.splice(todoObj, index);
         this.updateLocalStorage();
     }
 
@@ -140,10 +126,17 @@ class TodoService {
                 <i class="fa-solid fa-trash-can"></i>
                 </button>
                 </li>
-
-
             `;
         });
         TodoEvent.getInstance().addEventDeleteTodoClilck();
     }
+
+    loadDeleteNumber() {
+        const deleteList = document.querySelector("#count-numbers");
+        deleteList.innerHTML = '';
+
+
+    }
+
+    
 }

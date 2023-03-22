@@ -1,0 +1,76 @@
+.menu-aside{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+
+    min-width: 20%;
+    height: 100%;
+    box-shadow: 1px 0px 5px 1px #DBDBDB;
+    background-color: #FFB840;
+    transition: left 1s ease;
+}
+
+.menu-hidden{
+    left: -400px;
+}
+
+.menu-nav ul{
+    margin: 0;
+    padding: 0;
+}
+
+.aside-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid #DBDBDB;
+    padding: 20px 5px 20px 10px;
+
+    background-color: #3F9FF3;
+}
+
+.header-title, .aside-header i[class*="fa"]{
+    color: #FFF;
+}
+
+.menu-list .fa-calendar-check{
+    padding: 0px 20px;
+    font-size: 16px;
+}
+
+.header-title{
+    font-size: 16px;
+    cursor: default;
+}
+.header-title i{
+    padding: 10px;
+}
+
+.menu-list a{
+    width: 100%;
+}
+
+.menu-items li{
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid #dbdbdb;
+    margin: 0;
+    height: 40px;
+    background-color: #3F9FF3;
+
+    font-size: 16px;
+    color: #FFF;
+}
+
+.menu-items li:hover{
+    background-color: #1B67B3;
+}
+
+.menu-items li .fa-regular{
+    padding: 0px 10px;
+    font-size: 16px;
+    color: #FFF;
+}

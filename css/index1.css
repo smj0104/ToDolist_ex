@@ -1,0 +1,139 @@
+* {
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+}
+*::-webkit-scrollbar{
+    overflow: hidden;
+    width: 5px;
+}
+
+*::-webkit-scrollbar-thumb{
+    background-color: #DBDBDB;
+    border-radius: 5px;
+}
+
+body{
+    margin: 0;
+    height: 100%;
+    background: #1B67B3;
+}
+
+a{
+    text-decoration: none;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding: 20px;
+    overflow: hidden;
+
+}
+.title {
+    padding: 2px;
+    color: whitesmoke;
+    font-size: 30px;
+}
+
+.title i{
+    padding: 5px;
+}
+.main-container{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 5px;
+
+    background-color: white;
+    border-radius: 10px;
+
+    min-width: 50%;
+    max-height: 50%;
+    overflow: auto;
+}
+
+.menu-container {
+    margin: 20px;
+    min-width: 50%;
+    color: #FFF;
+}
+
+.menu-container button{
+    border: none;
+    
+    background-color: #1B67B3;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.menu-container button:hover{
+    box-shadow: 0px 0px 2px 1px #DBDBDB;
+    transition: box-shadow 0.3 ease;
+    background-color: #FFB840;
+}
+
+.make-todo {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.todo-input {
+    position: relative;
+    padding: 12px;
+    width: 80%;
+    height: 45px;
+
+    color: #FFF;
+    font-weight: 500;
+    font-size: 15px;
+
+    border-radius: 5px;
+    border: none;
+    background-color: #59ACFF;
+}
+
+.todo-input:focus{
+    outline: none;
+}
+
+.todo-input::placeholder {
+    color: #FFF;
+    font-weight: 600;
+}
+
+.button-make-todo {
+
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    height: 45px;
+    width: 18%;
+    border-radius: 5px;
+
+    background-color: #3f9fff;
+    color: #ffffff;
+}
+
+.button-make-todo:hover{
+    background-color: #FFB840;
+}
+
+ul {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.calendar-input{
+    display: none;
+}
